@@ -3,87 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Evia Naturelle | أناقة وجمال</title>
+    <title>Evia Naturelle | ط£ظ†ط§ظ‚ط© ظˆط¬ظ…ط§ظ„</title>
     <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <style>
-        :root { --green: #3f5d44; --green-dark: #2c4330; --gold: #bb7e52; --bg: #faf6f0; --admin-color: #4a3b52; --purple: #7c5285; }
-        body { font-family: 'Tajawal', sans-serif; background: var(--bg); margin: 0; padding-bottom: 100px; direction: rtl; overflow-x: hidden; }
-        h1, .brand-font { font-family: 'Amiri', serif; }
+        :root {
+            --green: #2f5233; --green-dark: #1c2e1e; --green-soft: #eef3ea;
+            --gold: #c17f45; --gold-dark: #9c6432; --gold-soft: #faf0e4;
+            --bg: #faf7f1; --admin-color: #4a3b52; --purple: #7c5285;
+            --ink: #2a251f; --ink-soft: #8a8074; --card: #ffffff;
+            --danger: #d1483c; --success: #2e8b52; --line: #ece6d9;
+            --radius-xl: 22px; --radius-lg: 16px; --radius-md: 12px; --radius-sm: 8px;
+            --shadow-sm: 0 1px 3px rgba(30,25,15,.07);
+            --shadow-md: 0 10px 26px rgba(30,25,15,.10);
+            --shadow-lg: 0 26px 60px rgba(30,25,15,.24);
+        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Tajawal', sans-serif; background: var(--bg); margin: 0; padding-bottom: 110px; direction: rtl; overflow-x: hidden; color: var(--ink); -webkit-tap-highlight-color: transparent; }
+        h1, h2, h3, .brand-font { font-family: 'Amiri', serif; }
+        ::selection { background: var(--gold-soft); }
 
-        .welcome-ticker { background: var(--green-dark); color: #f2e9dd; padding: 8px 0; overflow: hidden; border-bottom: 2px solid var(--gold); width: 100%; position: relative; z-index: 2000; }
-        .welcome-track { display: flex; width: max-content; animation: scrollInfinite 40s linear infinite; }
+        /* ط´ط±ظٹط· ط§ظ„طھط±ط­ظٹط¨ */
+        .welcome-ticker { background: var(--green-dark); color: #f2e9dd; padding: 7px 0; overflow: hidden; border-bottom: 2px solid var(--gold); width: 100%; position: relative; z-index: 2000; }
+        .welcome-track { display: flex; width: max-content; animation: scrollInfinite 38s linear infinite; }
         @keyframes scrollInfinite { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
-        .welcome-msg { padding: 0 50px; font-weight: bold; font-size: 0.9rem; white-space: nowrap; }
+        .welcome-msg { padding: 0 40px; font-weight: 500; font-size: 0.82rem; white-space: nowrap; letter-spacing: .2px; }
 
-        header { background: radial-gradient(circle at 20% 20%, #4c6e51, var(--green-dark) 70%); color: #f7f1e6; padding: 22px 20px 12px 20px; text-align: center; border-bottom: 5px solid var(--gold); position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-        header h1 { margin: 0; font-size: 2rem; letter-spacing: 1px; }
-        header .tagline { margin: 4px 0 0 0; opacity: 0.9; font-size: 0.95rem; }
-        .header-actions-container { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: 15px; }
-        .top-btn { background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.4); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; backdrop-filter: blur(5px); transition: 0.3s; }
+        /* ط§ظ„ظ‡ظٹط¯ط± */
+        header { background: linear-gradient(160deg, #3a5c3f 0%, var(--green-dark) 100%); color: #f8f4ea; padding: 26px 18px 18px; text-align: center; position: relative; box-shadow: var(--shadow-md); overflow: hidden; }
+        header::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 85% -10%, rgba(193,127,69,.35), transparent 55%), radial-gradient(circle at 5% 110%, rgba(255,255,255,.08), transparent 50%); pointer-events: none; }
+        .header-inner { position: relative; z-index: 1; }
+        .brand-row { display: flex; align-items: center; justify-content: center; gap: 8px; }
+        header h1 { margin: 0; font-size: 1.9rem; letter-spacing: .5px; }
+        header .tagline { margin: 4px 0 0 0; opacity: 0.88; font-size: 0.88rem; font-weight: 400; }
+        .header-actions-container { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: 16px; gap: 10px; position: relative; z-index: 1; }
+        .top-btn { background: rgba(255,255,255,0.12); color: white; border: 1px solid rgba(255,255,255,0.28); padding: 8px 14px; border-radius: 30px; cursor: pointer; font-size: 0.78rem; font-weight: 700; backdrop-filter: blur(6px); transition: .25s; font-family: 'Tajawal'; }
+        .top-btn:active { transform: scale(0.95); background: rgba(255,255,255,0.22); }
 
-        .setup-banner { background: #fff3e0; border: 2px dashed var(--gold); color: #6b4a1f; padding: 18px; margin: 15px; border-radius: 15px; text-align: center; line-height: 1.8; max-width: 900px; margin-left: auto; margin-right: auto; }
+        /* ط´ط±ظٹط· ط§ظ„ط¨ط­ط« */
+        .search-wrap { position: relative; z-index: 1; margin-top: 16px; }
+        .search-input { width: 100%; padding: 13px 44px 13px 16px; border-radius: 30px; border: none; outline: none; font-family: 'Tajawal'; font-size: 0.92rem; box-shadow: var(--shadow-sm); background: rgba(255,255,255,.96); color: var(--ink); }
+        .search-input::placeholder { color: var(--ink-soft); }
+        .search-icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 1.05rem; opacity: .55; pointer-events: none; }
+
+        /* ط´ط±ظٹط· ط§ظ„ط«ظ‚ط© */
+        .trust-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 900px; margin: 14px auto 0; padding: 0 12px; }
+        .trust-item { background: var(--card); border-radius: var(--radius-md); padding: 10px 6px; text-align: center; box-shadow: var(--shadow-sm); border: 1px solid var(--line); }
+        .trust-item .ti-icon { font-size: 1.3rem; display: block; margin-bottom: 3px; }
+        .trust-item .ti-text { font-size: 0.68rem; color: var(--ink-soft); font-weight: 700; line-height: 1.3; }
+
+        .setup-banner { background: #fff3e0; border: 2px dashed var(--gold); color: #6b4a1f; padding: 16px; margin: 15px; border-radius: var(--radius-lg); text-align: center; line-height: 1.8; max-width: 900px; margin-left: auto; margin-right: auto; font-size: 0.88rem; }
         .setup-banner code { background: #fff; padding: 2px 6px; border-radius: 5px; border: 1px solid #eee; }
 
-        .admin-panel { background: white; padding: 25px; margin: 20px auto; max-width: 1000px; border-radius: 20px; display: none; border-top: 5px solid var(--admin-color); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+        /* ظ„ظˆط­ط© ط§ظ„ط¥ط¯ط§ط±ط© */
+        .admin-panel { background: white; padding: 22px; margin: 20px auto; max-width: 1000px; border-radius: var(--radius-xl); display: none; border-top: 5px solid var(--admin-color); box-shadow: var(--shadow-lg); }
         .admin-tab-btns { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; flex-wrap: wrap; }
-        .sub-tab-btn { padding: 10px 20px; background: #eee; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; flex: 1; white-space: nowrap; }
+        .sub-tab-btn { padding: 10px 20px; background: #f1eee9; border: none; border-radius: var(--radius-sm); cursor: pointer; font-weight: bold; flex: 1; white-space: nowrap; font-family: 'Tajawal'; }
         .sub-tab-btn.active { background: var(--admin-color); color: white; }
-        .admin-input { padding: 10px; border: 1px solid #ddd; border-radius: 10px; width: 100%; box-sizing: border-box; margin-bottom: 8px; outline: none; font-family: 'Tajawal'; }
+        .admin-input { padding: 11px 12px; border: 1.5px solid #e4ded4; border-radius: var(--radius-sm); width: 100%; box-sizing: border-box; margin-bottom: 8px; outline: none; font-family: 'Tajawal'; font-size: 0.9rem; transition: .2s; }
+        .admin-input:focus { border-color: var(--green); }
 
         .merchants-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
-        .merchant-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 15px; text-align: center; cursor: pointer; transition: 0.3s; position: relative; }
+        .merchant-card { background: #fff; border: 1px solid #e0e0e0; border-radius: var(--radius-md); padding: 15px; text-align: center; cursor: pointer; transition: 0.3s; position: relative; }
         .merchant-card:hover { transform: translateY(-5px); border-color: var(--purple); box-shadow: 0 5px 15px rgba(124, 82, 133, 0.2); }
         .merchant-img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; border: 2px solid #eee; }
 
-        .merchant-products-editor { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; max-height: 500px; overflow-y: auto; padding: 10px; background: #f8f9fa; border-radius: 10px; border: 1px solid #ddd; }
-        .simple-prod-card { background: white; padding: 10px; border-radius: 8px; border: 1px solid #ddd; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+        .merchant-products-editor { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; max-height: 500px; overflow-y: auto; padding: 10px; background: #f8f9fa; border-radius: var(--radius-sm); border: 1px solid #ddd; }
+        .simple-prod-card { background: white; padding: 10px; border-radius: var(--radius-sm); border: 1px solid #ddd; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
         .simple-prod-img { width: 100%; height: 100px; border-radius: 6px; object-fit: contain; }
 
         .mini-nav-container { display: flex; overflow-x: auto; white-space: nowrap; gap: 5px; padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid #eee; }
-        .mini-tab-btn { padding: 6px 15px; border: 1px solid #ccc; background: white; border-radius: 20px; font-size: 0.85rem; cursor: pointer; }
+        .mini-tab-btn { padding: 6px 15px; border: 1px solid #ccc; background: white; border-radius: 20px; font-size: 0.85rem; cursor: pointer; font-family: 'Tajawal'; }
         .mini-tab-btn.active { background: var(--purple); color: white; border-color: var(--purple); }
 
-        .btn-assign { width: 100%; padding: 8px; border: 1px solid #ccc; background: #f0f0f0; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn-assign { width: 100%; padding: 8px; border: 1px solid #ccc; background: #f0f0f0; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.3s; font-family: 'Tajawal'; }
         .btn-assign.assigned { background: var(--purple); color: white; border-color: var(--purple); }
 
-        .container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 15px; max-width: 1200px; margin: 0 auto; }
-        @media (max-width: 768px) { .container { grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 8px; } }
+        /* ط´ط¨ظƒط© ط§ظ„ظ…ظ†طھط¬ط§طھ */
+        .container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 16px; max-width: 1200px; margin: 0 auto; }
+        @media (max-width: 768px) { .container { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 12px; } }
+        @media (min-width: 769px) and (max-width: 1024px) { .container { grid-template-columns: repeat(3, 1fr); } }
 
-        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 12px rgba(63,93,68,0.08); display: flex; flex-direction: column; position: relative; border: 1px solid #eee; transition: 0.3s; height: 100%; }
-        .card img { width: 100%; height: 130px; object-fit: cover; cursor: pointer; background: #f1ece1; }
+        .card { background: var(--card); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; position: relative; border: 1px solid var(--line); transition: .25s ease; height: 100%; }
+        .card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+        .card-img-wrap { position: relative; width: 100%; aspect-ratio: 1/1; overflow: hidden; background: linear-gradient(135deg,#f1ece0,#e9e2d3); }
+        .card img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; display: block; transition: transform .4s ease; }
+        .card:hover img { transform: scale(1.06); }
 
-        .card-content { padding: 10px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
-        .product-title { font-size: 0.9rem; margin: 0 0 8px 0; height: 38px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.35; }
+        .card-content { padding: 12px 12px 14px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
+        .cat-chip { display: inline-block; font-size: 0.62rem; color: var(--green); background: var(--green-soft); padding: 2px 8px; border-radius: 20px; font-weight: 700; margin-bottom: 6px; width: fit-content; }
+        .product-title { font-size: 0.88rem; margin: 0 0 8px 0; height: 38px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.35; font-weight: 600; color: var(--ink); }
 
-        .badge-pill { position: absolute; top: 10px; padding: 3px 8px; border-radius: 10px; font-size: 10px; z-index: 5; font-weight: bold; color: white; }
-        .pinned-badge { right: 10px; background: var(--gold); }
+        .badge-pill { position: absolute; top: 10px; padding: 4px 10px; border-radius: 20px; font-size: 10px; z-index: 5; font-weight: bold; color: white; box-shadow: 0 3px 8px rgba(0,0,0,.15); }
+        .pinned-badge { right: 10px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); }
         .wholesale-badge { left: 10px; background: #b1533f; }
         .merchant-badge { left: 10px; background: var(--purple); }
+        .discount-ribbon { position: absolute; top: 10px; left: 10px; background: var(--danger); color: white; font-size: 11px; font-weight: 800; padding: 4px 9px; border-radius: 8px; box-shadow: 0 3px 8px rgba(0,0,0,.18); z-index: 5; }
 
-        .price-tag { color: var(--gold); font-weight: bold; font-size: 1rem; }
+        .price-row { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+        .price-tag { color: var(--gold-dark); font-weight: 800; font-size: 1.05rem; }
+        .old-price { color: var(--ink-soft); text-decoration: line-through; font-size: 0.78rem; font-weight: 500; }
         .special-price { color: var(--purple) !important; font-size: 1.1rem; }
         .wholesale-mode-price { color: #b1533f !important; }
+        .unit-chip { font-size: 0.68rem; color: var(--ink-soft); background: #f5f1e9; padding: 2px 7px; border-radius: 10px; }
+        .info-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 4px; }
 
-        .add-btn { background: var(--green); color: white; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 0.85rem; width: 100%; margin-top: 8px; }
+        .qty-stepper { display: flex; align-items: center; border: 1.5px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 6px; background: #fbfaf7; }
+        .qty-stepper input { width: 100%; border: none; text-align: center; font-weight: 700; outline: none; padding: 7px; background: transparent; font-family: 'Tajawal'; color: var(--ink); }
 
+        .add-btn { background: var(--green); color: white; border: none; padding: 11px; border-radius: var(--radius-sm); cursor: pointer; font-weight: 700; font-size: 0.85rem; width: 100%; margin-top: 4px; font-family: 'Tajawal'; transition: .2s; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .add-btn:active { transform: scale(0.97); background: var(--green-dark); }
+
+        /* ط´ط±ظٹط· ط§ظ„طھطµظ†ظٹظپط§طھ */
         .nav-tabs-container { background: white; position: sticky; top: 0; z-index: 1000; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 10px 0; }
-        .nav-tabs-track { display: flex; width: max-content; animation: scrollTabs 30s linear infinite; }
+        .nav-tabs-track { display: flex; width: max-content; animation: scrollTabs 32s linear infinite; }
         @keyframes scrollTabs { 0% { transform: translateX(0); } 100% { transform: translateX(33.33%); } }
-        .tab-btn { padding: 8px 22px; margin: 0 5px; border: 1.5px solid var(--green); background: none; border-radius: 25px; cursor: pointer; font-weight: bold; white-space: nowrap; color: var(--green-dark); }
-        .tab-btn.active { background: var(--green); color: white; }
+        .tab-btn { padding: 9px 20px; margin: 0 5px; border: 1.5px solid var(--line); background: #fbfaf7; border-radius: 30px; cursor: pointer; font-weight: 700; white-space: nowrap; color: var(--ink); font-family: 'Tajawal'; font-size: 0.85rem; transition: .2s; }
+        .tab-btn.active { background: var(--green); color: white; border-color: var(--green); box-shadow: 0 4px 12px rgba(47,82,51,.3); }
 
-        .modal { display: none; position: fixed; z-index: 3000; inset: 0; background: rgba(35,25,20,0.85); padding: 15px; overflow-y: auto; }
-        .modal-content { background: white; margin: 20px auto; padding: 25px; width: 95%; max-width: 550px; border-radius: 25px; position: relative; }
+        /* ط§ظ„ظ†ظˆط§ظپط° ط§ظ„ظ…ظ†ط¨ط«ظ‚ط© */
+        .modal { display: none; position: fixed; z-index: 3000; inset: 0; background: rgba(25,20,15,0.78); padding: 15px; overflow-y: auto; backdrop-filter: blur(3px); }
+        .modal-content { background: white; margin: 20px auto; padding: 26px; width: 95%; max-width: 550px; border-radius: 26px; position: relative; box-shadow: var(--shadow-lg); animation: modalPop .25s ease; }
+        @keyframes modalPop { from { opacity: 0; transform: translateY(15px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
-        #floatingCart { position: fixed; left: 20px; bottom: 30px; width: 65px; height: 65px; background: var(--green); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 30px; z-index: 5000; cursor: move; user-select: none; touch-action: none; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.1s; }
-        #floatingCart:active { transform: scale(0.95); }
+        /* ط§ظ„ط³ظ„ط© ط§ظ„ط¹ط§ط¦ظ…ط© */
+        #floatingCart { position: fixed; left: 20px; bottom: 30px; width: 62px; height: 62px; background: linear-gradient(145deg, var(--green), var(--green-dark)); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 27px; z-index: 5000; cursor: move; user-select: none; touch-action: none; box-shadow: 0 8px 22px rgba(31,53,32,.45); transition: transform 0.1s; }
+        #floatingCart:active { transform: scale(0.94); }
 
-        .badge { position: absolute; top: 0; right: 0; background: #b1533f; color: white; border-radius: 50%; width: 22px; height: 22px; font-size: 11px; display: flex; justify-content: center; align-items: center; border: 2px solid white; pointer-events: none; }
-        .cart-qty-btn { background: #eee; border: none; width: 25px; height: 25px; border-radius: 50%; cursor: pointer; }
+        .badge { position: absolute; top: -2px; right: -2px; background: var(--danger); color: white; border-radius: 50%; width: 23px; height: 23px; font-size: 11px; font-weight: 800; display: flex; justify-content: center; align-items: center; border: 2.5px solid white; pointer-events: none; }
+        .cart-qty-btn { background: var(--green-soft); color: var(--green-dark); border: none; width: 27px; height: 27px; border-radius: 50%; cursor: pointer; font-weight: 800; font-size: 1rem; }
 
+        /* ط¹ظ†ط§طµط± ط§ظ„ط¥ط¯ط§ط±ط© ط¯ط§ط®ظ„ ط§ظ„ط¨ط·ط§ظ‚ط© */
         .edit-box { padding: 10px; background: #f9f9f9; border-top: 1px solid #eee; display: flex; flex-direction: column; gap: 8px; }
         .btn-pin, .btn-del, .edit-order-input { width: 100%; box-sizing: border-box; padding: 8px; border-radius: 6px; font-family: 'Tajawal'; font-size: 0.85rem; border: 1px solid #ccc; }
         .btn-pin { background: #ddd; color: #333; border: none; font-weight: bold; }
@@ -91,19 +143,29 @@
         .edit-order-input { text-align: center; }
         .btn-del { background: #b1533f; color: white; border: none; font-weight: bold; cursor: pointer; }
 
-        .save-edit-btn { background: var(--admin-color); color: white; width: 100%; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 1rem; }
+        .save-edit-btn { background: var(--admin-color); color: white; width: 100%; padding: 15px; border: none; border-radius: var(--radius-sm); font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 1rem; font-family: 'Tajawal'; }
 
         .log-item { background: #fff; padding: 10px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
         .log-action { font-weight: bold; font-size: 0.85rem; }
         .log-undo-btn { background: #34495e; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.75rem; }
         .log-tag { padding: 2px 6px; border-radius: 4px; color: white; font-size: 0.7rem; margin-left: 5px; }
 
-        /* ==================== تنسيقات واجهة التثبيت ==================== */
+        /* ط¨ط·ط§ظ‚ط© ط§ظ„ط³ظ„ط© ظˆط§ظ„ط¯ظپط¹ */
+        .cart-item-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+        .cart-item-img { width: 48px; height: 48px; border-radius: 10px; object-fit: cover; background: #f1ece0; flex-shrink: 0; }
+        .cart-item-info { flex: 1; min-width: 0; }
+        .cart-item-info b { font-size: 0.85rem; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .cart-summary-box { background: #fbfaf7; padding: 16px; border-radius: var(--radius-lg); border: 1.5px solid var(--line); }
+        .final-total-box { display: flex; justify-content: space-between; align-items: center; font-weight: 800; text-align: center; margin: 18px 0; padding: 14px 18px; background: var(--gold-soft); border-radius: var(--radius-md); }
+        .final-total-box .amt { color: var(--gold-dark); font-size: 1.35rem; }
+        .checkout-btn { background: linear-gradient(135deg,#25D366,#1fb959); color: white; padding: 16px; border: none; border-radius: var(--radius-md); font-weight: 800; cursor: pointer; width: 100%; font-size: 1rem; font-family: 'Tajawal'; box-shadow: 0 8px 20px rgba(37,211,102,.35); }
+
+        /* ظˆط§ط¬ظ‡ط© ط§ظ„طھط«ط¨ظٹطھ */
         #pwa-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999; display: none; flex-direction: column; }
         .pwa-top-transparent { height: 50%; width: 100%; background: rgba(0,0,0,0.1); cursor: pointer; }
         .pwa-bottom-panel { height: 50%; width: 100%; background: white; border-top-left-radius: 35px; border-top-right-radius: 35px; box-shadow: 0 -15px 40px rgba(0,0,0,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; box-sizing: border-box; text-align: center; animation: slideUpPWA 0.5s ease-out; }
         @keyframes slideUpPWA { from { transform: translateY(100%); } to { transform: translateY(0); } }
-        .pwa-btn-main { background: var(--green); color: white; border: none; padding: 18px 0; width: 90%; border-radius: 15px; font-weight: bold; font-size: 1.2rem; margin-top: 20px; cursor: pointer; box-shadow: 0 5px 15px rgba(63,93,68,0.3); }
+        .pwa-btn-main { background: var(--green); color: white; border: none; padding: 18px 0; width: 90%; border-radius: var(--radius-md); font-weight: bold; font-size: 1.2rem; margin-top: 20px; cursor: pointer; box-shadow: 0 5px 15px rgba(47,82,51,0.3); font-family: 'Tajawal'; }
         .pwa-close-link { color: #888; margin-top: 15px; font-size: 0.9rem; text-decoration: underline; cursor: pointer; }
     </style>
 </head>
@@ -113,71 +175,87 @@
     <div class="pwa-top-transparent" onclick="triggerAppInstall()"></div>
     <div class="pwa-bottom-panel">
         <img src="https://via.placeholder.com/160x160/3f5d44/ffffff?text=Evia" style="width: 80px; border-radius: 20px; margin-bottom: 15px;">
-        <h2 class="brand-font" style="margin:0; color:var(--green);">تثبيت متجر Evia Naturelle</h2>
-        <p style="color:#666; font-size: 1rem; margin: 10px 0;">أضيفي التطبيق إلى شاشتك الرئيسية للوصول السريع لمنتجاتنا وطلبها بسهولة.</p>
-        <button class="pwa-btn-main" onclick="triggerAppInstall()">موافقة وتثبيت ✅</button>
-        <div class="pwa-close-link" onclick="closePWA()">إغلاق ومتابعة التصفح</div>
+        <h2 class="brand-font" style="margin:0; color:var(--green);">طھط«ط¨ظٹطھ ظ…طھط¬ط± Evia Naturelle</h2>
+        <p style="color:#666; font-size: 1rem; margin: 10px 0;">ط£ط¶ظٹظپظٹ ط§ظ„طھط·ط¨ظٹظ‚ ط¥ظ„ظ‰ ط´ط§ط´طھظƒ ط§ظ„ط±ط¦ظٹط³ظٹط© ظ„ظ„ظˆطµظˆظ„ ط§ظ„ط³ط±ظٹط¹ ظ„ظ…ظ†طھط¬ط§طھظ†ط§ ظˆط·ظ„ط¨ظ‡ط§ ط¨ط³ظ‡ظˆظ„ط©.</p>
+        <button class="pwa-btn-main" onclick="triggerAppInstall()">ظ…ظˆط§ظپظ‚ط© ظˆطھط«ط¨ظٹطھ âœ…</button>
+        <div class="pwa-close-link" onclick="closePWA()">ط¥ط؛ظ„ط§ظ‚ ظˆظ…طھط§ط¨ط¹ط© ط§ظ„طھطµظپط­</div>
     </div>
 </div>
 
 <div class="welcome-ticker">
     <div class="welcome-track">
-        <span class="welcome-msg">🌿 مرحباً بكم في Evia Naturelle - أناقة وجمال - منتجات طبيعية 100% وتوصيل لكل الولايات 💜</span>
-        <span class="welcome-msg">🌿 مرحباً بكم في Evia Naturelle - أناقة وجمال - منتجات طبيعية 100% وتوصيل لكل الولايات 💜</span>
+        <span class="welcome-msg">ًںŒ؟ ظ…ط±ط­ط¨ط§ظ‹ ط¨ظƒظ… ظپظٹ Evia Naturelle - ط£ظ†ط§ظ‚ط© ظˆط¬ظ…ط§ظ„ - ظ…ظ†طھط¬ط§طھ ط·ط¨ظٹط¹ظٹط© 100% ظˆطھظˆطµظٹظ„ ظ„ظƒظ„ ط§ظ„ظˆظ„ط§ظٹط§طھ ًں’œ</span>
+        <span class="welcome-msg">ًںŒ؟ ظ…ط±ط­ط¨ط§ظ‹ ط¨ظƒظ… ظپظٹ Evia Naturelle - ط£ظ†ط§ظ‚ط© ظˆط¬ظ…ط§ظ„ - ظ…ظ†طھط¬ط§طھ ط·ط¨ظٹط¹ظٹط© 100% ظˆطھظˆطµظٹظ„ ظ„ظƒظ„ ط§ظ„ظˆظ„ط§ظٹط§طھ ًں’œ</span>
     </div>
 </div>
 
 <header>
-    <h1>🌿 Evia Naturelle</h1>
-    <p class="tagline" id="mode-text">أناقة وجمال ✨ مستحضرات طبيعية للعناية بالبشرة والشعر</p>
+    <div class="header-inner">
+        <div class="brand-row">
+            <h1>ًںŒ؟ Evia Naturelle</h1>
+        </div>
+        <p class="tagline" id="mode-text">ط£ظ†ط§ظ‚ط© ظˆط¬ظ…ط§ظ„ âœ¨ ظ…ط³طھط­ط¶ط±ط§طھ ط·ط¨ظٹط¹ظٹط© ظ„ظ„ط¹ظ†ط§ظٹط© ط¨ط§ظ„ط¨ط´ط±ط© ظˆط§ظ„ط´ط¹ط±</p>
 
-    <div class="header-actions-container">
-        <button class="top-btn" onclick="loginAdmin()">⚙️ الإدارة</button>
-        <button class="top-btn" id="wholesaleToggle" onclick="handleLogin()">🛒 تجار</button>
+        <div class="header-actions-container">
+            <button class="top-btn" onclick="loginAdmin()">âڑ™ï¸ڈ ط§ظ„ط¥ط¯ط§ط±ط©</button>
+            <button class="top-btn" id="wholesaleToggle" onclick="handleLogin()">ًں›’ طھط¬ط§ط±</button>
+        </div>
+
+        <div class="search-wrap">
+            <input type="text" id="search-input" class="search-input" placeholder="ط§ط¨ط­ط«ظٹ ط¹ظ† ظ…ظ†طھط¬... (ظ…ط§ط³ظƒطŒ ظ…ط§ط، ط§ظ„ظˆط±ط¯طŒ طµط§ط¨ظˆظ†)" oninput="render()">
+            <span class="search-icon">ًں”چ</span>
+        </div>
     </div>
 </header>
+
+<div class="trust-bar">
+    <div class="trust-item"><span class="ti-icon">ًںڑڑ</span><span class="ti-text">طھظˆطµظٹظ„ ظ„ظƒظ„ ط§ظ„ظˆظ„ط§ظٹط§طھ</span></div>
+    <div class="trust-item"><span class="ti-icon">ًںŒ؟</span><span class="ti-text">ظ…ظ†طھط¬ط§طھ ط·ط¨ظٹط¹ظٹط© 100%</span></div>
+    <div class="trust-item"><span class="ti-icon">ًں’³</span><span class="ti-text">ط§ظ„ط¯ظپط¹ ط¹ظ†ط¯ ط§ظ„ط§ط³طھظ„ط§ظ…</span></div>
+</div>
 
 <div id="setup-banner-container"></div>
 
 <div class="admin-panel" id="adminPanel">
     <div class="admin-tab-btns">
-        <button class="sub-tab-btn active" onclick="switchAdminTab('products')">المنتجات</button>
-        <button class="sub-tab-btn" onclick="switchAdminTab('merchants')">ملفات التجار</button>
-        <button class="sub-tab-btn" onclick="switchAdminTab('logs')" style="background: #b1533f; color: white;">🕒 سجل التعديلات</button>
+        <button class="sub-tab-btn active" onclick="switchAdminTab('products')">ط§ظ„ظ…ظ†طھط¬ط§طھ</button>
+        <button class="sub-tab-btn" onclick="switchAdminTab('merchants')">ظ…ظ„ظپط§طھ ط§ظ„طھط¬ط§ط±</button>
+        <button class="sub-tab-btn" onclick="switchAdminTab('logs')" style="background: #b1533f; color: white;">ًں•’ ط³ط¬ظ„ ط§ظ„طھط¹ط¯ظٹظ„ط§طھ</button>
     </div>
 
     <div id="admin-products-tab">
         <div style="background: #eef3ee; padding: 10px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #d7e4d7; color: #2c4330; text-align: center;">
-            💡 <b>ملاحظة:</b> لتعديل بيانات المنتج (الاسم، السعر، الصورة...) اضغطي على <b>صورة المنتج</b> في الأسفل.
+            ًں’، <b>ظ…ظ„ط§ط­ط¸ط©:</b> ظ„طھط¹ط¯ظٹظ„ ط¨ظٹط§ظ†ط§طھ ط§ظ„ظ…ظ†طھط¬ (ط§ظ„ط§ط³ظ…طŒ ط§ظ„ط³ط¹ط±طŒ ط§ظ„طµظˆط±ط©...) ط§ط¶ط؛ط·ظٹ ط¹ظ„ظ‰ <b>طµظˆط±ط© ط§ظ„ظ…ظ†طھط¬</b> ظپظٹ ط§ظ„ط£ط³ظپظ„.
         </div>
-        <h3>📦 إضافة منتج جديد</h3>
+        <h3>ًں“¦ ط¥ط¶ط§ظپط© ظ…ظ†طھط¬ ط¬ط¯ظٹط¯</h3>
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px;">
-            <input type="text" id="p-name" class="admin-input" placeholder="اسم المنتج">
-            <input type="number" id="p-price" class="admin-input" placeholder="سعر التجزئة">
-            <input type="number" id="p-price-w" class="admin-input" placeholder="سعر الجملة">
-            <input type="number" id="p-amt" class="admin-input" placeholder="الوزن/الحجم">
-            <select id="p-unit" class="admin-input"><option>غرام</option><option>مل</option><option>قطعة</option></select>
-            <input type="number" step="0.01" id="p-order" class="admin-input" placeholder="رقم الترتيب (مثلاً 1.5)">
-            <input type="text" id="p-img" class="admin-input" placeholder="رابط الصورة" style="grid-column: span 2;">
-            <textarea id="p-desc" class="admin-input" placeholder="الوصف والفوائد..." style="grid-column: span 2; height: 60px;"></textarea>
-            <select id="p-cat" class="admin-input" style="grid-column: span 2;"><option>أقنعة وطين</option><option>عناية بالبشرة</option><option>عناية بالشعر</option><option>عناية بالجسم</option><option>صابون طبيعي</option><option>العناية بالفم</option></select>
-            <button onclick="saveProduct()" style="grid-column: span 2; background: var(--gold); color: white; padding: 12px; border: none; border-radius: 10px; font-weight: bold;">حفظ المنتج</button>
+            <input type="text" id="p-name" class="admin-input" placeholder="ط§ط³ظ… ط§ظ„ظ…ظ†طھط¬">
+            <input type="number" id="p-price" class="admin-input" placeholder="ط³ط¹ط± ط§ظ„طھط¬ط²ط¦ط©">
+            <input type="number" id="p-price-w" class="admin-input" placeholder="ط³ط¹ط± ط§ظ„ط¬ظ…ظ„ط©">
+            <input type="number" id="p-oldprice" class="admin-input" placeholder="ط§ظ„ط³ط¹ط± ظ‚ط¨ظ„ ط§ظ„طھط®ظپظٹط¶ (ط§ط®طھظٹط§ط±ظٹ)">
+            <input type="number" id="p-amt" class="admin-input" placeholder="ط§ظ„ظˆط²ظ†/ط§ظ„ط­ط¬ظ…">
+            <select id="p-unit" class="admin-input"><option>ط؛ط±ط§ظ…</option><option>ظ…ظ„</option><option>ظ‚ط·ط¹ط©</option></select>
+            <input type="number" step="0.01" id="p-order" class="admin-input" placeholder="ط±ظ‚ظ… ط§ظ„طھط±طھظٹط¨ (ظ…ط«ظ„ط§ظ‹ 1.5)">
+            <input type="text" id="p-img" class="admin-input" placeholder="ط±ط§ط¨ط· ط§ظ„طµظˆط±ط©" style="grid-column: span 2;">
+            <textarea id="p-desc" class="admin-input" placeholder="ط§ظ„ظˆطµظپ ظˆط§ظ„ظپظˆط§ط¦ط¯..." style="grid-column: span 2; height: 60px;"></textarea>
+            <select id="p-cat" class="admin-input" style="grid-column: span 2;"><option>ط£ظ‚ظ†ط¹ط© ظˆط·ظٹظ†</option><option>ط¹ظ†ط§ظٹط© ط¨ط§ظ„ط¨ط´ط±ط©</option><option>ط¹ظ†ط§ظٹط© ط¨ط§ظ„ط´ط¹ط±</option><option>ط¹ظ†ط§ظٹط© ط¨ط§ظ„ط¬ط³ظ…</option><option>طµط§ط¨ظˆظ† ط·ط¨ظٹط¹ظٹ</option><option>ط§ظ„ط¹ظ†ط§ظٹط© ط¨ط§ظ„ظپظ…</option></select>
+            <button onclick="saveProduct()" style="grid-column: span 2; background: var(--gold); color: white; padding: 12px; border: none; border-radius: 10px; font-weight: bold;">ط­ظپط¸ ط§ظ„ظ…ظ†طھط¬</button>
         </div>
     </div>
 
     <div id="admin-merchants-tab" style="display: none;">
-        <h3>👥 إدارة التجار والوكلاء</h3>
+        <h3>ًں‘¥ ط¥ط¯ط§ط±ط© ط§ظ„طھط¬ط§ط± ظˆط§ظ„ظˆظƒظ„ط§ط،</h3>
         <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-            <input type="text" id="m-name" class="admin-input" placeholder="اسم التاجر">
-            <input type="text" id="m-pass" class="admin-input" placeholder="كلمة السر">
-            <input type="text" id="m-img" class="admin-input" placeholder="رابط الصورة">
-            <button onclick="addMerchant()" style="background: var(--admin-color); color: white; padding: 0 20px; border-radius: 10px; border: none;">إضافة</button>
+            <input type="text" id="m-name" class="admin-input" placeholder="ط§ط³ظ… ط§ظ„طھط§ط¬ط±">
+            <input type="text" id="m-pass" class="admin-input" placeholder="ظƒظ„ظ…ط© ط§ظ„ط³ط±">
+            <input type="text" id="m-img" class="admin-input" placeholder="ط±ط§ط¨ط· ط§ظ„طµظˆط±ط©">
+            <button onclick="addMerchant()" style="background: var(--admin-color); color: white; padding: 0 20px; border-radius: 10px; border: none;">ط¥ط¶ط§ظپط©</button>
         </div>
         <div id="merchants-list" class="merchants-grid"></div>
         <div id="merchant-editor" style="display: none; margin-top: 20px; border-top: 2px solid #ccc; padding-top: 15px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <h4 style="margin:0; color:var(--purple);">🛠️ تخصيص: <span id="editor-merchant-name"></span></h4>
-                <button onclick="closeMerchantEditor()" style="background:#ddd; border:none; padding:5px 10px; border-radius:5px;">إغلاق</button>
+                <h4 style="margin:0; color:var(--purple);">ًں› ï¸ڈ طھط®طµظٹطµ: <span id="editor-merchant-name"></span></h4>
+                <button onclick="closeMerchantEditor()" style="background:#ddd; border:none; padding:5px 10px; border-radius:5px;">ط¥ط؛ظ„ط§ظ‚</button>
             </div>
             <div id="merchant-filter-bar" class="mini-nav-container"></div>
             <div id="merchant-products-grid" class="merchant-products-editor"></div>
@@ -185,9 +263,9 @@
     </div>
 
     <div id="admin-logs-tab" style="display: none;">
-        <h3>🕒 سجل التعديلات</h3>
+        <h3>ًں•’ ط³ط¬ظ„ ط§ظ„طھط¹ط¯ظٹظ„ط§طھ</h3>
         <div id="logs-list" style="max-height: 400px; overflow-y: auto; background: #f8f9fa; border: 1px solid #ddd; border-radius: 10px;">
-            <div style="padding: 20px; text-align: center; color: #888;">جاري التحميل...</div>
+            <div style="padding: 20px; text-align: center; color: #888;">ط¬ط§ط±ظٹ ط§ظ„طھط­ظ…ظٹظ„...</div>
         </div>
     </div>
 </div>
@@ -202,46 +280,46 @@
 <div id="adminEditModal" class="modal">
     <div class="modal-content">
         <span onclick="document.getElementById('adminEditModal').style.display='none'" style="position:absolute; left:20px; top:15px; font-size:30px; cursor:pointer; color:#888;">&times;</span>
-        <h3 style="text-align:center; color:var(--admin-color); margin-bottom:20px;">✏️ تعديل بيانات المنتج</h3>
+        <h3 style="text-align:center; color:var(--admin-color); margin-bottom:20px;">âœڈï¸ڈ طھط¹ط¯ظٹظ„ ط¨ظٹط§ظ†ط§طھ ط§ظ„ظ…ظ†طھط¬</h3>
         <div id="edit-form-container"></div>
     </div>
 </div>
 
-<div id="floatingCart">🛒<div class="badge" id="cart-badge">0</div></div>
+<div id="floatingCart">ًں›’<div class="badge" id="cart-badge">0</div></div>
 
 <div id="cartModal" class="modal">
     <div class="modal-content">
-        <h3 id="cart-title" class="brand-font" style="text-align: center; color: var(--green);">🛒 سلة المشتريات</h3>
+        <h3 id="cart-title" class="brand-font" style="text-align: center; color: var(--green); margin-top:0;">ًں›’ ط³ظ„ط© ط§ظ„ظ…ط´طھط±ظٹط§طھ</h3>
         <div id="cart-items" style="max-height: 250px; overflow-y: auto; margin-bottom: 15px;"></div>
-        <div style="background: #f9f9f9; padding: 15px; border-radius: 15px; border: 1px dashed var(--green);">
-            <input type="text" id="cust-name" placeholder="الاسم الكامل" class="admin-input">
-            <input type="tel" id="cust-phone" placeholder="رقم الهاتف" class="admin-input">
+        <div class="cart-summary-box">
+            <input type="text" id="cust-name" placeholder="ط§ظ„ط§ط³ظ… ط§ظ„ظƒط§ظ…ظ„" class="admin-input">
+            <input type="tel" id="cust-phone" placeholder="ط±ظ‚ظ… ط§ظ„ظ‡ط§طھظپ" class="admin-input">
             <select id="ship-type" class="admin-input" onchange="updateCartUI()">
-                <option value="700">توصيل للمنزل (700 دج)</option>
-                <option value="500">توصيل للمكتب (500 دج)</option>
+                <option value="700">ًںڑڑ طھظˆطµظٹظ„ ظ„ظ„ظ…ظ†ط²ظ„ (700 ط¯ط¬)</option>
+                <option value="500">ًںڈ¢ طھظˆطµظٹظ„ ظ„ظ„ظ…ظƒطھط¨ (500 ط¯ط¬)</option>
             </select>
             <div id="wilaya-section"><select id="cust-wilaya" class="admin-input"></select></div>
-            <div id="address-section"><input type="text" id="cust-address" placeholder="العنوان بالتفصيل" class="admin-input"></div>
+            <div id="address-section"><input type="text" id="cust-address" placeholder="ط§ظ„ط¹ظ†ظˆط§ظ† ط¨ط§ظ„طھظپطµظٹظ„" class="admin-input"></div>
         </div>
-        <div style="font-size: 1.4rem; font-weight: bold; text-align: center; color: var(--gold); margin: 20px 0;">الإجمالي: <span id="final-total">0</span> دج</div>
-        <button onclick="checkout()" style="background: #25D366; color: white; padding: 18px; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; width: 100%;">تأكيد الطلب عبر واتساب ✅</button>
-        <button onclick="closeCart()" style="display: block; margin: 10px auto; background: none; color: #888; border: none; cursor: pointer;">إغلاق</button>
+        <div class="final-total-box"><span>ط§ظ„ط¥ط¬ظ…ط§ظ„ظٹ</span><span class="amt"><span id="final-total">0</span> ط¯ط¬</span></div>
+        <button onclick="checkout()" class="checkout-btn">طھط£ظƒظٹط¯ ط§ظ„ط·ظ„ط¨ ط¹ط¨ط± ظˆط§طھط³ط§ط¨ âœ…</button>
+        <button onclick="closeCart()" style="display: block; margin: 12px auto 0; background: none; color: #888; border: none; cursor: pointer; font-family:'Tajawal';">ط¥ط؛ظ„ط§ظ‚</button>
     </div>
 </div>
 
 <script>
     /* ============================================================
-       ⚠️ إعدادات المتجر - عدّلي هنا فقط
+       âڑ ï¸ڈ ط¥ط¹ط¯ط§ط¯ط§طھ ط§ظ„ظ…طھط¬ط± - ط¹ط¯ظ‘ظ„ظٹ ظ‡ظ†ط§ ظپظ‚ط·
        ============================================================ */
     const config = {
-        adminPass: "evia2026",        // كلمة سر لوحة إدارة المنتجات (زر "الإدارة")
-        merchantAuthPass: "evia2026", // كود الأمان لتعديل ملف تاجر
-        wholesalePass: "jomla2026",   // كلمة سر دخول التجار لوضع الجملة
-        whatsapp: "213657843233"      // رقم الواتساب الذي تصل إليه الطلبات
+        adminPass: "evia2026",        // ظƒظ„ظ…ط© ط³ط± ظ„ظˆط­ط© ط¥ط¯ط§ط±ط© ط§ظ„ظ…ظ†طھط¬ط§طھ (ط²ط± "ط§ظ„ط¥ط¯ط§ط±ط©")
+        merchantAuthPass: "evia2026", // ظƒظˆط¯ ط§ظ„ط£ظ…ط§ظ† ظ„طھط¹ط¯ظٹظ„ ظ…ظ„ظپ طھط§ط¬ط±
+        wholesalePass: "jomla2026",   // ظƒظ„ظ…ط© ط³ط± ط¯ط®ظˆظ„ ط§ظ„طھط¬ط§ط± ظ„ظˆط¶ط¹ ط§ظ„ط¬ظ…ظ„ط©
+        whatsapp: "213657843233"      // ط±ظ‚ظ… ط§ظ„ظˆط§طھط³ط§ط¨ ط§ظ„ط°ظٹ طھطµظ„ ط¥ظ„ظٹظ‡ ط§ظ„ط·ظ„ط¨ط§طھ
     };
 
-    // ⚠️ ضعي رابط قاعدة بيانات Firebase الخاصة بك هنا بين علامتي التنصيص.
-    // اتركيه فارغاً "" إذا لم تكوني قد أنشأتِ الحساب بعد؛ الموقع سيعمل بشكل عرضي فقط بدون حفظ بيانات.
+    // âڑ ï¸ڈ ط¶ط¹ظٹ ط±ط§ط¨ط· ظ‚ط§ط¹ط¯ط© ط¨ظٹط§ظ†ط§طھ Firebase ط§ظ„ط®ط§طµط© ط¨ظƒ ظ‡ظ†ط§ ط¨ظٹظ† ط¹ظ„ط§ظ…طھظٹ ط§ظ„طھظ†طµظٹطµ.
+    // ط§طھط±ظƒظٹظ‡ ظپط§ط±ط؛ط§ظ‹ "" ط¥ط°ط§ ظ„ظ… طھظƒظˆظ†ظٹ ظ‚ط¯ ط£ظ†ط´ط£طھظگ ط§ظ„ط­ط³ط§ط¨ ط¨ط¹ط¯ط› ط§ظ„ظ…ظˆظ‚ط¹ ط³ظٹط¹ظ…ظ„ ط¨ط´ظƒظ„ ط¹ط±ط¶ظٹ ظپظ‚ط· ط¨ط¯ظˆظ† ط­ظپط¸ ط¨ظٹط§ظ†ط§طھ.
     const FIREBASE_URL = "https://evia-e68ab-default-rtdb.firebaseio.com";
 
     let firebaseReady = false;
@@ -254,25 +332,26 @@
         } catch (e) { console.error("Firebase init error:", e); }
     }
 
-    const catOrder = ['أقنعة وطين', 'عناية بالبشرة', 'عناية بالشعر', 'عناية بالجسم', 'صابون طبيعي', 'العناية بالفم'];
+    const catOrder = ['ط£ظ‚ظ†ط¹ط© ظˆط·ظٹظ†', 'ط¹ظ†ط§ظٹط© ط¨ط§ظ„ط¨ط´ط±ط©', 'ط¹ظ†ط§ظٹط© ط¨ط§ظ„ط´ط¹ط±', 'ط¹ظ†ط§ظٹط© ط¨ط§ظ„ط¬ط³ظ…', 'طµط§ط¨ظˆظ† ط·ط¨ظٹط¹ظٹ', 'ط§ظ„ط¹ظ†ط§ظٹط© ط¨ط§ظ„ظپظ…'];
+    const catIcons = { 'ط§ظ„ظƒظ„': 'âœ¨', 'ط£ظ‚ظ†ط¹ط© ظˆط·ظٹظ†': 'ًںچƒ', 'ط¹ظ†ط§ظٹط© ط¨ط§ظ„ط¨ط´ط±ط©': 'ًںŒ¸', 'ط¹ظ†ط§ظٹط© ط¨ط§ظ„ط´ط¹ط±': 'ًں’‡â€چâ™€ï¸ڈ', 'ط¹ظ†ط§ظٹط© ط¨ط§ظ„ط¬ط³ظ…': 'ًں§´', 'طµط§ط¨ظˆظ† ط·ط¨ظٹط¹ظٹ': 'ًں§¼', 'ط§ظ„ط¹ظ†ط§ظٹط© ط¨ط§ظ„ظپظ…': 'ًںکپ' };
     let products = [], merchants = [], logs = [], cart = [], isAdmin = false;
-    let currentMode = 'retail', currentMerchant = null, filter = 'الكل', merchantEditorFilter = 'الكل';
+    let currentMode = 'retail', currentMerchant = null, filter = 'ط§ظ„ظƒظ„', merchantEditorFilter = 'ط§ظ„ظƒظ„';
 
-    // منتجات تجريبية تظهر فقط إذا لم يتم ربط قاعدة بيانات بعد، لتتمكني من معاينة شكل الموقع
+    // ظ…ظ†طھط¬ط§طھ طھط¬ط±ظٹط¨ظٹط© طھط¸ظ‡ط± ظپظ‚ط· ط¥ط°ط§ ظ„ظ… ظٹطھظ… ط±ط¨ط· ظ‚ط§ط¹ط¯ط© ط¨ظٹط§ظ†ط§طھ ط¨ط¹ط¯طŒ ظ„طھطھظ…ظƒظ†ظٹ ظ…ظ† ظ…ط¹ط§ظٹظ†ط© ط´ظƒظ„ ط§ظ„ظ…ظˆظ‚ط¹
     const demoProducts = [
-        { id: "d1", name: "ماسك الطين التجميلي الطبيعي", price: 900, wholesalePrice: 650, baseAmt: 100, unit: "غرام", cat: "أقنعة وطين", img: "https://via.placeholder.com/400x400/6b7d5a/ffffff?text=Clay+Mask", desc: "ماسك طين طبيعي يساعد على امتصاص الدهون، تنقية المسام وتنعيم البشرة الدهنية.", orderIndex: 1, pinned: true, timestamp: Date.now() },
-        { id: "d2", name: "تبريمة الحمام المغربي", price: 700, wholesalePrice: 500, baseAmt: 200, unit: "غرام", cat: "أقنعة وطين", img: "https://via.placeholder.com/400x400/6b7d5a/ffffff?text=Hammam", desc: "تبريمة طبيعية لتقشير وتنظيف البشرة بعمق في الحمام.", orderIndex: 2, pinned: false, timestamp: Date.now() },
-        { id: "d3", name: "ماء الورد الطبيعي", price: 500, wholesalePrice: 350, baseAmt: 100, unit: "مل", cat: "عناية بالبشرة", img: "https://via.placeholder.com/400x400/bb7e52/ffffff?text=Rose+Water", desc: "ماء ورد طبيعي 100%، منعش ومرطب للبشرة.", orderIndex: 1, pinned: true, timestamp: Date.now() },
-        { id: "d4", name: "التونر الطبيعي بالألوفيرا", price: 600, wholesalePrice: 450, baseAmt: 100, unit: "مل", cat: "عناية بالبشرة", img: "https://via.placeholder.com/400x400/bb7e52/ffffff?text=Toner", desc: "تونر طبيعي لتنقية المسام وترطيب البشرة يومياً.", orderIndex: 2, pinned: false, timestamp: Date.now() },
-        { id: "d5", name: "زيت مزيل المكياج", price: 950, wholesalePrice: 700, baseAmt: 100, unit: "مل", cat: "عناية بالبشرة", img: "https://via.placeholder.com/400x400/bb7e52/ffffff?text=Makeup+Remover", desc: "زيوت طبيعية (جوجوبا، لوز حلو) لإزالة المكياج بعمق دون تجفيف البشرة.", orderIndex: 3, pinned: false, timestamp: Date.now() },
-        { id: "d6", name: "بلسم الشفاه الطبيعي", price: 350, wholesalePrice: 250, baseAmt: 1, unit: "قطعة", cat: "عناية بالبشرة", img: "https://via.placeholder.com/400x400/bb7e52/ffffff?text=Lip+Balm", desc: "بلسم طبيعي بزبدة الشيا وفيتامين E لترطيب الشفاه.", orderIndex: 4, pinned: false, timestamp: Date.now() },
-        { id: "d7", name: "صابونة ضد الحبوب والبقع الداكنة", price: 400, wholesalePrice: 280, baseAmt: 1, unit: "قطعة", cat: "صابون طبيعي", img: "https://via.placeholder.com/400x400/8a6a4a/ffffff?text=Soap", desc: "صابون طبيعي يساعد على تفتيح البقع الداكنة ومحاربة الحبوب.", orderIndex: 1, pinned: false, timestamp: Date.now() },
-        { id: "d8", name: "زيت تطويل وتكثيف الشعر", price: 900, wholesalePrice: 650, baseAmt: 100, unit: "مل", cat: "عناية بالشعر", img: "https://via.placeholder.com/400x400/4a5d3a/ffffff?text=Hair+Oil", desc: "خلطة زيوت طبيعية لتطويل الشعر وتكثيفه.", orderIndex: 1, pinned: false, timestamp: Date.now() },
-        { id: "d9", name: "معجون أسنان طبيعي للتبييض", price: 600, wholesalePrice: 420, baseAmt: 1, unit: "قطعة", cat: "العناية بالفم", img: "https://via.placeholder.com/400x400/3f5d44/ffffff?text=Toothpaste", desc: "معجون أسنان طبيعي ضد الرائحة ويساعد على التبييض.", orderIndex: 1, pinned: false, timestamp: Date.now() },
-        { id: "d10", name: "كريم طبيعي ضد التعرق والروائح", price: 700, wholesalePrice: 500, baseAmt: 50, unit: "غرام", cat: "عناية بالجسم", img: "https://via.placeholder.com/400x400/bb7e52/ffffff?text=Deo+Cream", desc: "كريم طبيعي يحارب التعرق والروائح طوال اليوم.", orderIndex: 1, pinned: false, timestamp: Date.now() }
+        { id: "d1", name: "ظ…ط§ط³ظƒ ط§ظ„ط·ظٹظ† ط§ظ„طھط¬ظ…ظٹظ„ظٹ ط§ظ„ط·ط¨ظٹط¹ظٹ", price: 900, oldPrice: 1100, wholesalePrice: 650, baseAmt: 100, unit: "ط؛ط±ط§ظ…", cat: "ط£ظ‚ظ†ط¹ط© ظˆط·ظٹظ†", img: "https://via.placeholder.com/400x400/6b7d5a/ffffff?text=Clay+Mask", desc: "ظ…ط§ط³ظƒ ط·ظٹظ† ط·ط¨ظٹط¹ظٹ ظٹط³ط§ط¹ط¯ ط¹ظ„ظ‰ ط§ظ…طھطµط§طµ ط§ظ„ط¯ظ‡ظˆظ†طŒ طھظ†ظ‚ظٹط© ط§ظ„ظ…ط³ط§ظ… ظˆطھظ†ط¹ظٹظ… ط§ظ„ط¨ط´ط±ط© ط§ظ„ط¯ظ‡ظ†ظٹط©.", orderIndex: 1, pinned: true, timestamp: Date.now() },
+        { id: "d2", name: "طھط¨ط±ظٹظ…ط© ط§ظ„ط­ظ…ط§ظ… ط§ظ„ظ…ط؛ط±ط¨ظٹ", price: 700, wholesalePrice: 500, baseAmt: 200, unit: "ط؛ط±ط§ظ…", cat: "ط£ظ‚ظ†ط¹ط© ظˆط·ظٹظ†", img: "https://via.placeholder.com/400x400/6b7d5a/ffffff?text=Hammam", desc: "طھط¨ط±ظٹظ…ط© ط·ط¨ظٹط¹ظٹط© ظ„طھظ‚ط´ظٹط± ظˆطھظ†ط¸ظٹظپ ط§ظ„ط¨ط´ط±ط© ط¨ط¹ظ…ظ‚ ظپظٹ ط§ظ„ط­ظ…ط§ظ….", orderIndex: 2, pinned: false, timestamp: Date.now() },
+        { id: "d3", name: "ظ…ط§ط، ط§ظ„ظˆط±ط¯ ط§ظ„ط·ط¨ظٹط¹ظٹ", price: 500, wholesalePrice: 350, baseAmt: 100, unit: "ظ…ظ„", cat: "ط¹ظ†ط§ظٹط© ط¨ط§ظ„ط¨ط´ط±ط©", img: "https://via.placeholder.com/400x400/bb7e52/ffffff?text=Rose+Water", desc: "ظ…ط§ط، ظˆط±ط¯ ط·ط¨ظٹط¹ظٹ 100%طŒ ظ…ظ†ط¹ط´ ظˆظ…ط±ط·ط¨ ظ„ظ„ط¨ط´ط±ط©.", orderIndex: 1, pinned: true, timestamp: Date.now() },
+        { id: "d4", name: "ط§ظ„طھظˆظ†ط± ط§ظ„ط·ط¨ظٹط¹ظٹ ط¨ط§ظ„ط£ظ„ظˆظپظٹط±ط§", price: 600, wholesalePrice: 450, baseAmt: 100, unit: "ظ…ظ„", cat: "ط¹ظ†ط§ظٹط© ط¨ط§ظ„ط¨ط´ط±ط©", img: "https://via.placeholder.com/400x400/bb7e52/ffffff?text=Toner", desc: "طھظˆظ†ط± ط·ط¨ظٹط¹ظٹ ظ„طھظ†ظ‚ظٹط© ط§ظ„ظ…ط³ط§ظ… ظˆطھط±ط·ظٹط¨ ط§ظ„ط¨ط´ط±ط© ظٹظˆظ…ظٹط§ظ‹.", orderIndex: 2, pinned: false, timestamp: Date.now() },
+        { id: "d5", name: "ط²ظٹطھ ظ…ط²ظٹظ„ ط§ظ„ظ…ظƒظٹط§ط¬", price: 950, oldPrice: 1200, wholesalePrice: 700, baseAmt: 100, unit: "ظ…ظ„", cat: "ط¹ظ†ط§ظٹط© ط¨ط§ظ„ط¨ط´ط±ط©", img: "https://via.placeholder.com/400x400/bb7e52/ffffff?text=Makeup+Remover", desc: "ط²ظٹظˆطھ ط·ط¨ظٹط¹ظٹط© (ط¬ظˆط¬ظˆط¨ط§طŒ ظ„ظˆط² ط­ظ„ظˆ) ظ„ط¥ط²ط§ظ„ط© ط§ظ„ظ…ظƒظٹط§ط¬ ط¨ط¹ظ…ظ‚ ط¯ظˆظ† طھط¬ظپظٹظپ ط§ظ„ط¨ط´ط±ط©.", orderIndex: 3, pinned: false, timestamp: Date.now() },
+        { id: "d6", name: "ط¨ظ„ط³ظ… ط§ظ„ط´ظپط§ظ‡ ط§ظ„ط·ط¨ظٹط¹ظٹ", price: 350, wholesalePrice: 250, baseAmt: 1, unit: "ظ‚ط·ط¹ط©", cat: "ط¹ظ†ط§ظٹط© ط¨ط§ظ„ط¨ط´ط±ط©", img: "https://via.placeholder.com/400x400/bb7e52/ffffff?text=Lip+Balm", desc: "ط¨ظ„ط³ظ… ط·ط¨ظٹط¹ظٹ ط¨ط²ط¨ط¯ط© ط§ظ„ط´ظٹط§ ظˆظپظٹطھط§ظ…ظٹظ† E ظ„طھط±ط·ظٹط¨ ط§ظ„ط´ظپط§ظ‡.", orderIndex: 4, pinned: false, timestamp: Date.now() },
+        { id: "d7", name: "طµط§ط¨ظˆظ†ط© ط¶ط¯ ط§ظ„ط­ط¨ظˆط¨ ظˆط§ظ„ط¨ظ‚ط¹ ط§ظ„ط¯ط§ظƒظ†ط©", price: 400, wholesalePrice: 280, baseAmt: 1, unit: "ظ‚ط·ط¹ط©", cat: "طµط§ط¨ظˆظ† ط·ط¨ظٹط¹ظٹ", img: "https://via.placeholder.com/400x400/8a6a4a/ffffff?text=Soap", desc: "طµط§ط¨ظˆظ† ط·ط¨ظٹط¹ظٹ ظٹط³ط§ط¹ط¯ ط¹ظ„ظ‰ طھظپطھظٹط­ ط§ظ„ط¨ظ‚ط¹ ط§ظ„ط¯ط§ظƒظ†ط© ظˆظ…ط­ط§ط±ط¨ط© ط§ظ„ط­ط¨ظˆط¨.", orderIndex: 1, pinned: false, timestamp: Date.now() },
+        { id: "d8", name: "ط²ظٹطھ طھط·ظˆظٹظ„ ظˆطھظƒط«ظٹظپ ط§ظ„ط´ط¹ط±", price: 900, wholesalePrice: 650, baseAmt: 100, unit: "ظ…ظ„", cat: "ط¹ظ†ط§ظٹط© ط¨ط§ظ„ط´ط¹ط±", img: "https://via.placeholder.com/400x400/4a5d3a/ffffff?text=Hair+Oil", desc: "ط®ظ„ط·ط© ط²ظٹظˆطھ ط·ط¨ظٹط¹ظٹط© ظ„طھط·ظˆظٹظ„ ط§ظ„ط´ط¹ط± ظˆطھظƒط«ظٹظپظ‡.", orderIndex: 1, pinned: false, timestamp: Date.now() },
+        { id: "d9", name: "ظ…ط¹ط¬ظˆظ† ط£ط³ظ†ط§ظ† ط·ط¨ظٹط¹ظٹ ظ„ظ„طھط¨ظٹظٹط¶", price: 600, wholesalePrice: 420, baseAmt: 1, unit: "ظ‚ط·ط¹ط©", cat: "ط§ظ„ط¹ظ†ط§ظٹط© ط¨ط§ظ„ظپظ…", img: "https://via.placeholder.com/400x400/3f5d44/ffffff?text=Toothpaste", desc: "ظ…ط¹ط¬ظˆظ† ط£ط³ظ†ط§ظ† ط·ط¨ظٹط¹ظٹ ط¶ط¯ ط§ظ„ط±ط§ط¦ط­ط© ظˆظٹط³ط§ط¹ط¯ ط¹ظ„ظ‰ ط§ظ„طھط¨ظٹظٹط¶.", orderIndex: 1, pinned: false, timestamp: Date.now() },
+        { id: "d10", name: "ظƒط±ظٹظ… ط·ط¨ظٹط¹ظٹ ط¶ط¯ ط§ظ„طھط¹ط±ظ‚ ظˆط§ظ„ط±ظˆط§ط¦ط­", price: 700, wholesalePrice: 500, baseAmt: 50, unit: "ط؛ط±ط§ظ…", cat: "ط¹ظ†ط§ظٹط© ط¨ط§ظ„ط¬ط³ظ…", img: "https://via.placeholder.com/400x400/bb7e52/ffffff?text=Deo+Cream", desc: "ظƒط±ظٹظ… ط·ط¨ظٹط¹ظٹ ظٹط­ط§ط±ط¨ ط§ظ„طھط¹ط±ظ‚ ظˆط§ظ„ط±ظˆط§ط¦ط­ ط·ظˆط§ظ„ ط§ظ„ظٹظˆظ….", orderIndex: 1, pinned: false, timestamp: Date.now() }
     ];
 
-    // منطق الـ PWA
+    // ظ…ظ†ط·ظ‚ ط§ظ„ظ€ PWA
     let deferredPrompt;
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
@@ -293,20 +372,20 @@
     function init() {
         if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(err => console.log(err)); }
 
-        const w = ["أدرار","الشلف","الأغواط","أم البواقي","باتنة","بجاية","بسكرة","بشار","البليدة","البويرة","تمنراست","تبسة","تلمسان","تيارت","تيزي وزو","الجزائر","الجلفة","جيجل","سطيف","سعيدة","سكيكدة","سيدي بلعباس","عنابة","قالمة","قسنطينة","المدية","مستغانم","المسيلة","معسكر","ورقلة","وهران","البيض","إليزي","برج بوعريريج","الطارف","تندوف","تيسمسيلت","الوادي","خنشلة","سوق أهراس","تيبازة","ميلة","عين الدفلى","النعامة","عين تموشنت","غرداية","غليزان"];
+        const w = ["ط£ط¯ط±ط§ط±","ط§ظ„ط´ظ„ظپ","ط§ظ„ط£ط؛ظˆط§ط·","ط£ظ… ط§ظ„ط¨ظˆط§ظ‚ظٹ","ط¨ط§طھظ†ط©","ط¨ط¬ط§ظٹط©","ط¨ط³ظƒط±ط©","ط¨ط´ط§ط±","ط§ظ„ط¨ظ„ظٹط¯ط©","ط§ظ„ط¨ظˆظٹط±ط©","طھظ…ظ†ط±ط§ط³طھ","طھط¨ط³ط©","طھظ„ظ…ط³ط§ظ†","طھظٹط§ط±طھ","طھظٹط²ظٹ ظˆط²ظˆ","ط§ظ„ط¬ط²ط§ط¦ط±","ط§ظ„ط¬ظ„ظپط©","ط¬ظٹط¬ظ„","ط³ط·ظٹظپ","ط³ط¹ظٹط¯ط©","ط³ظƒظٹظƒط¯ط©","ط³ظٹط¯ظٹ ط¨ظ„ط¹ط¨ط§ط³","ط¹ظ†ط§ط¨ط©","ظ‚ط§ظ„ظ…ط©","ظ‚ط³ظ†ط·ظٹظ†ط©","ط§ظ„ظ…ط¯ظٹط©","ظ…ط³طھط؛ط§ظ†ظ…","ط§ظ„ظ…ط³ظٹظ„ط©","ظ…ط¹ط³ظƒط±","ظˆط±ظ‚ظ„ط©","ظˆظ‡ط±ط§ظ†","ط§ظ„ط¨ظٹط¶","ط¥ظ„ظٹط²ظٹ","ط¨ط±ط¬ ط¨ظˆط¹ط±ظٹط±ظٹط¬","ط§ظ„ط·ط§ط±ظپ","طھظ†ط¯ظˆظپ","طھظٹط³ظ…ط³ظٹظ„طھ","ط§ظ„ظˆط§ط¯ظٹ","ط®ظ†ط´ظ„ط©","ط³ظˆظ‚ ط£ظ‡ط±ط§ط³","طھظٹط¨ط§ط²ط©","ظ…ظٹظ„ط©","ط¹ظٹظ† ط§ظ„ط¯ظپظ„ظ‰","ط§ظ„ظ†ط¹ط§ظ…ط©","ط¹ظٹظ† طھظ…ظˆط´ظ†طھ","ط؛ط±ط¯ط§ظٹط©","ط؛ظ„ظٹط²ط§ظ†"];
         const select = document.getElementById('cust-wilaya');
         w.forEach((name, i) => select.innerHTML += `<option>${i+1} - ${name}</option>`);
 
-        document.getElementById('tabs-track').innerHTML = ['الكل', ...catOrder, ...catOrder].map(cat =>
-            `<button class="tab-btn ${cat === 'الكل' ? 'active' : ''}" onclick="render('${cat}', this)">${cat}</button>`
+        document.getElementById('tabs-track').innerHTML = ['ط§ظ„ظƒظ„', ...catOrder, ...catOrder].map(cat =>
+            `<button class="tab-btn ${cat === 'ط§ظ„ظƒظ„' ? 'active' : ''}" onclick="render('${cat}', this)">${catIcons[cat] || 'ًںŒ؟'} ${cat}</button>`
         ).join('');
 
         if (!firebaseReady) {
             document.getElementById('setup-banner-container').innerHTML = `
                 <div class="setup-banner">
-                    ⚠️ <b>لم يتم ربط قاعدة البيانات بعد.</b><br>
-                    المنتجات المعروضة الآن هي بيانات تجريبية للمعاينة فقط ولن يتم حفظ أي تعديل.<br>
-                    بعد إنشاء حساب Firebase، ضعي رابط قاعدة البيانات في المتغيّر <code>FIREBASE_URL</code> داخل الكود ليعمل الموقع فعلياً.
+                    âڑ ï¸ڈ <b>ظ„ظ… ظٹطھظ… ط±ط¨ط· ظ‚ط§ط¹ط¯ط© ط§ظ„ط¨ظٹط§ظ†ط§طھ ط¨ط¹ط¯.</b><br>
+                    ط§ظ„ظ…ظ†طھط¬ط§طھ ط§ظ„ظ…ط¹ط±ظˆط¶ط© ط§ظ„ط¢ظ† ظ‡ظٹ ط¨ظٹط§ظ†ط§طھ طھط¬ط±ظٹط¨ظٹط© ظ„ظ„ظ…ط¹ط§ظٹظ†ط© ظپظ‚ط· ظˆظ„ظ† ظٹطھظ… ط­ظپط¸ ط£ظٹ طھط¹ط¯ظٹظ„.<br>
+                    ط¨ط¹ط¯ ط¥ظ†ط´ط§ط، ط­ط³ط§ط¨ FirebaseطŒ ط¶ط¹ظٹ ط±ط§ط¨ط· ظ‚ط§ط¹ط¯ط© ط§ظ„ط¨ظٹط§ظ†ط§طھ ظپظٹ ط§ظ„ظ…طھط؛ظٹظ‘ط± <code>FIREBASE_URL</code> ط¯ط§ط®ظ„ ط§ظ„ظƒظˆط¯ ظ„ظٹط¹ظ…ظ„ ط§ظ„ظ…ظˆظ‚ط¹ ظپط¹ظ„ظٹط§ظ‹.
                 </div>`;
             products = demoProducts.slice().sort((a,b) => (a.orderIndex||9999) - (b.orderIndex||9999));
             render();
@@ -340,7 +419,7 @@
     }
 
     function requireDb() {
-        if (!firebaseReady) { alert("⚠️ يجب ربط قاعدة بيانات Firebase أولاً من داخل الكود قبل استخدام هذه الميزة."); return false; }
+        if (!firebaseReady) { alert("âڑ ï¸ڈ ظٹط¬ط¨ ط±ط¨ط· ظ‚ط§ط¹ط¯ط© ط¨ظٹط§ظ†ط§طھ Firebase ط£ظˆظ„ط§ظ‹ ظ…ظ† ط¯ط§ط®ظ„ ط§ظ„ظƒظˆط¯ ظ‚ط¨ظ„ ط§ط³طھط®ط¯ط§ظ… ظ‡ط°ظ‡ ط§ظ„ظ…ظٹط²ط©."); return false; }
         return true;
     }
 
@@ -352,21 +431,21 @@
 
     function renderLogs() {
         const container = document.getElementById('logs-list');
-        if (logs.length === 0) { container.innerHTML = '<div style="padding:20px; text-align:center;">لا توجد سجلات</div>'; return; }
+        if (logs.length === 0) { container.innerHTML = '<div style="padding:20px; text-align:center;">ظ„ط§ طھظˆط¬ط¯ ط³ط¬ظ„ط§طھ</div>'; return; }
         container.innerHTML = logs.map(log => {
             let actionText = '', color = '#7f8c8d';
-            if (log.action === 'edit') { actionText = 'تعديل'; color = '#c78a3e'; }
-            if (log.action === 'delete') { actionText = 'حذف'; color = '#b1533f'; }
-            if (log.action === 'create') { actionText = 'إنشاء'; color = '#3f5d44'; }
-            if (log.action === 'pin') { actionText = 'تثبيت'; color = '#7c5285'; }
-            if (log.action === 'reorder') { actionText = 'ترتيب'; color = '#2980b9'; }
-            return `<div class="log-item"><div><span class="log-tag" style="background:${color}">${actionText}</span> <b>${log.prodName}</b><br><small>${new Date(log.timestamp).toLocaleTimeString('ar-DZ')}</small></div><button class="log-undo-btn" onclick="restoreLog('${log.id}')">↩ تراجع</button></div>`;
+            if (log.action === 'edit') { actionText = 'طھط¹ط¯ظٹظ„'; color = '#c78a3e'; }
+            if (log.action === 'delete') { actionText = 'ط­ط°ظپ'; color = '#b1533f'; }
+            if (log.action === 'create') { actionText = 'ط¥ظ†ط´ط§ط،'; color = '#3f5d44'; }
+            if (log.action === 'pin') { actionText = 'طھط«ط¨ظٹطھ'; color = '#7c5285'; }
+            if (log.action === 'reorder') { actionText = 'طھط±طھظٹط¨'; color = '#2980b9'; }
+            return `<div class="log-item"><div><span class="log-tag" style="background:${color}">${actionText}</span> <b>${log.prodName}</b><br><small>${new Date(log.timestamp).toLocaleTimeString('ar-DZ')}</small></div><button class="log-undo-btn" onclick="restoreLog('${log.id}')">â†© طھط±ط§ط¬ط¹</button></div>`;
         }).join('');
     }
 
     function restoreLog(logId) {
         const log = logs.find(l => l.id === logId);
-        if (log && confirm(`التراجع عن "${log.action}" للمنتج "${log.prodName}"؟`)) {
+        if (log && confirm(`ط§ظ„طھط±ط§ط¬ط¹ ط¹ظ† "${log.action}" ظ„ظ„ظ…ظ†طھط¬ "${log.prodName}"طں`)) {
             if (log.action === 'create') db.ref('products/' + log.prodId).remove();
             else if (log.previousData) db.ref('products/' + log.prodId).set(log.previousData);
             db.ref('logs/' + log.id).remove();
@@ -404,21 +483,22 @@
         const p = products.find(x => x.id === id); if(!p) return;
         document.getElementById('edit-form-container').innerHTML = `
             <div style="display:flex; gap:10px;">
-                <div style="flex:3"><label>الاسم:</label><input type="text" id="edit-name-${id}" value="${p.name}" class="admin-input"></div>
-                <div style="flex:1"><label>الترتيب:</label><input type="number" step="0.01" id="edit-order-${id}" value="${p.orderIndex || ''}" class="admin-input"></div>
+                <div style="flex:3"><label>ط§ظ„ط§ط³ظ…:</label><input type="text" id="edit-name-${id}" value="${p.name}" class="admin-input"></div>
+                <div style="flex:1"><label>ط§ظ„طھط±طھظٹط¨:</label><input type="number" step="0.01" id="edit-order-${id}" value="${p.orderIndex || ''}" class="admin-input"></div>
             </div>
             <div style="display:flex; gap:10px;">
-                <div style="flex:1"><label>تجزئة:</label><input type="number" id="edit-price-${id}" value="${p.price}" class="admin-input"></div>
-                <div style="flex:1"><label>جملة:</label><input type="number" id="edit-wprice-${id}" value="${p.wholesalePrice||0}" class="admin-input"></div>
+                <div style="flex:1"><label>طھط¬ط²ط¦ط©:</label><input type="number" id="edit-price-${id}" value="${p.price}" class="admin-input"></div>
+                <div style="flex:1"><label>ط¬ظ…ظ„ط©:</label><input type="number" id="edit-wprice-${id}" value="${p.wholesalePrice||0}" class="admin-input"></div>
             </div>
+            <div><label>ط§ظ„ط³ط¹ط± ظ‚ط¨ظ„ ط§ظ„طھط®ظپظٹط¶ (ط§طھط±ظƒظٹظ‡ ظپط§ط±ط؛ط§ظ‹ ظ„ط¥ط®ظپط§ط، ط´ط§ط±ط© ط§ظ„ط®طµظ…):</label><input type="number" id="edit-oldprice-${id}" value="${p.oldPrice||''}" class="admin-input"></div>
             <div style="display:flex; gap:10px;">
-                 <div style="flex:1"><label>الكمية:</label><input type="number" id="edit-amt-${id}" value="${p.baseAmt}" class="admin-input"></div>
-                <div style="flex:1"><label>الوحدة:</label><select id="edit-unit-${id}" class="admin-input"><option ${p.unit==='غرام'?'selected':''}>غرام</option><option ${p.unit==='مل'?'selected':''}>مل</option><option ${p.unit==='قطعة'?'selected':''}>قطعة</option></select></div>
+                 <div style="flex:1"><label>ط§ظ„ظƒظ…ظٹط©:</label><input type="number" id="edit-amt-${id}" value="${p.baseAmt}" class="admin-input"></div>
+                <div style="flex:1"><label>ط§ظ„ظˆط­ط¯ط©:</label><select id="edit-unit-${id}" class="admin-input"><option ${p.unit==='ط؛ط±ط§ظ…'?'selected':''}>ط؛ط±ط§ظ…</option><option ${p.unit==='ظ…ظ„'?'selected':''}>ظ…ظ„</option><option ${p.unit==='ظ‚ط·ط¹ط©'?'selected':''}>ظ‚ط·ط¹ط©</option></select></div>
             </div>
-            <label>القسم:</label><select id="edit-cat-${id}" class="admin-input">${catOrder.map(c => `<option ${p.cat===c?'selected':''}>${c}</option>`).join('')}</select>
-            <label>الصورة:</label><input type="text" id="edit-img-${id}" value="${p.img||''}" class="admin-input">
-            <label>الوصف:</label><textarea id="edit-desc-${id}" class="admin-input" style="height:80px;">${p.desc||''}</textarea>
-            <button onclick="saveFullProductEdit('${id}')" class="save-edit-btn">💾 حفظ التعديلات</button>`;
+            <label>ط§ظ„ظ‚ط³ظ…:</label><select id="edit-cat-${id}" class="admin-input">${catOrder.map(c => `<option ${p.cat===c?'selected':''}>${c}</option>`).join('')}</select>
+            <label>ط§ظ„طµظˆط±ط©:</label><input type="text" id="edit-img-${id}" value="${p.img||''}" class="admin-input">
+            <label>ط§ظ„ظˆطµظپ:</label><textarea id="edit-desc-${id}" class="admin-input" style="height:80px;">${p.desc||''}</textarea>
+            <button onclick="saveFullProductEdit('${id}')" class="save-edit-btn">ًں’¾ ط­ظپط¸ ط§ظ„طھط¹ط¯ظٹظ„ط§طھ</button>`;
         document.getElementById('adminEditModal').style.display = 'block';
     }
 
@@ -428,6 +508,7 @@
             name: document.getElementById(`edit-name-${id}`).value,
             price: parseFloat(document.getElementById(`edit-price-${id}`).value),
             wholesalePrice: parseFloat(document.getElementById(`edit-wprice-${id}`).value),
+            oldPrice: parseFloat(document.getElementById(`edit-oldprice-${id}`).value) || 0,
             baseAmt: parseFloat(document.getElementById(`edit-amt-${id}`).value),
             unit: document.getElementById(`edit-unit-${id}`).value,
             cat: document.getElementById(`edit-cat-${id}`).value,
@@ -442,28 +523,28 @@
     function handleLogin() {
         if(currentMode !== 'retail') {
             currentMode = 'retail'; currentMerchant = null;
-            document.getElementById('wholesaleToggle').innerText = "🛒 تجار";
-            document.getElementById('mode-text').innerText = "أناقة وجمال ✨ مستحضرات طبيعية للعناية بالبشرة والشعر";
+            document.getElementById('wholesaleToggle').innerText = "ًں›’ طھط¬ط§ط±";
+            document.getElementById('mode-text').innerText = "ط£ظ†ط§ظ‚ط© ظˆط¬ظ…ط§ظ„ âœ¨ ظ…ط³طھط­ط¶ط±ط§طھ ط·ط¨ظٹط¹ظٹط© ظ„ظ„ط¹ظ†ط§ظٹط© ط¨ط§ظ„ط¨ط´ط±ط© ظˆط§ظ„ط´ط¹ط±";
             document.body.style.setProperty('--bg', '#faf6f0');
             cart = []; updateCartBadge(); render(); return;
         }
-        let pass = prompt("أدخلي كلمة السر:"); if (!pass) return;
+        let pass = prompt("ط£ط¯ط®ظ„ظٹ ظƒظ„ظ…ط© ط§ظ„ط³ط±:"); if (!pass) return;
         if (pass === config.wholesalePass) { activateWholesaleMode(); return; }
         const merch = merchants.find(m => m.pass === pass);
         if (merch) { activateMerchantMode(merch); return; }
-        alert("خطأ!");
+        alert("ط®ط·ط£!");
     }
 
     function activateWholesaleMode() {
-        currentMode = 'wholesale'; document.getElementById('wholesaleToggle').innerText = "خروج (جملة)";
-        document.getElementById('mode-text').innerText = "⚠️ وضع البيع بالجملة";
+        currentMode = 'wholesale'; document.getElementById('wholesaleToggle').innerText = "ط®ط±ظˆط¬ (ط¬ظ…ظ„ط©)";
+        document.getElementById('mode-text').innerText = "âڑ ï¸ڈ ظˆط¶ط¹ ط§ظ„ط¨ظٹط¹ ط¨ط§ظ„ط¬ظ…ظ„ط©";
         document.body.style.setProperty('--bg', '#fdf1ee'); cart = []; updateCartBadge(); render();
     }
 
     function activateMerchantMode(merch) {
         currentMode = 'merchant'; currentMerchant = merch;
-        document.getElementById('wholesaleToggle').innerText = `خروج (${merch.name})`;
-        document.getElementById('mode-text').innerHTML = `👤 أهلاً: <b style="color:var(--purple)">${merch.name}</b>`;
+        document.getElementById('wholesaleToggle').innerText = `ط®ط±ظˆط¬ (${merch.name})`;
+        document.getElementById('mode-text').innerHTML = `ًں‘¤ ط£ظ‡ظ„ط§ظ‹: <b style="color:var(--purple)">${merch.name}</b>`;
         document.body.style.setProperty('--bg', '#f4eef6'); cart = []; updateCartBadge(); render();
     }
 
@@ -474,35 +555,57 @@
         let display = products;
         if (currentMode === 'merchant' && currentMerchant) display = products.filter(p => currentMerchant.assignedProducts && currentMerchant.assignedProducts[p.id]);
 
-        display.filter(p => filter === 'الكل' || p.cat === filter).forEach(p => {
+        const searchEl = document.getElementById('search-input');
+        const q = searchEl ? searchEl.value.trim().toLowerCase() : '';
+
+        const filtered = display.filter(p => (filter === 'ط§ظ„ظƒظ„' || p.cat === filter) && (!q || p.name.toLowerCase().includes(q)));
+
+        if (filtered.length === 0) {
+            grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:50px 20px; color:var(--ink-soft);"><div style="font-size:2.5rem; margin-bottom:10px;">ًں”چ</div>ظ„ط§ طھظˆط¬ط¯ ظ…ظ†طھط¬ط§طھ ظ…ط·ط§ط¨ظ‚ط©</div>`;
+            return;
+        }
+
+        filtered.forEach(p => {
             let pr = p.price, cls = '';
             if (currentMode === 'wholesale') { pr = p.wholesalePrice || p.price; cls = 'wholesale-mode-price'; }
             else if (currentMode === 'merchant' && currentMerchant) { pr = (currentMerchant.customPrices && currentMerchant.customPrices[p.id]) || p.wholesalePrice || p.price; cls = 'special-price'; }
 
-            let badges = p.pinned ? `<div class="badge-pill pinned-badge">⭐</div>` : '';
-            if(isAdmin && p.orderIndex) badges += `<div class="badge-pill" style="left:10px; top:35px; background:#333; opacity:0.8;">#${p.orderIndex}</div>`;
+            let badges = p.pinned ? `<div class="badge-pill pinned-badge">â­گ ظ…ظ…ظٹط²</div>` : '';
+            if(isAdmin && p.orderIndex) badges += `<div class="badge-pill" style="left:10px; top:${p.pinned ? '38px':'10px'}; background:#333; opacity:0.85;">#${p.orderIndex}</div>`;
 
-            grid.innerHTML += `<div class="card">${badges}<img src="${p.img || 'https://via.placeholder.com/300x300/eee/999?text=Evia'}" onclick="handleProductClick('${p.id}')">
-                <div class="card-content"><h3 class="product-title">${p.name}</h3><div class="info-row"><span class="price-tag ${cls}">${pr} دج</span><span style="font-size:0.7rem;">${p.baseAmt}${p.unit}</span></div>
-                ${isAdmin ? getAdminControls(p) : getAddToCartBtn(p)}</div></div>`;
+            let priceHtml = `<span class="price-tag ${cls}">${pr} ط¯ط¬</span>`;
+            if (p.oldPrice && p.oldPrice > pr && currentMode === 'retail') {
+                const off = Math.round((1 - pr / p.oldPrice) * 100);
+                badges += `<div class="discount-ribbon">-${off}%</div>`;
+                priceHtml = `<span class="price-tag ${cls}">${pr} ط¯ط¬</span><span class="old-price">${p.oldPrice} ط¯ط¬</span>`;
+            }
+
+            grid.innerHTML += `<div class="card">${badges}
+                <div class="card-img-wrap"><img src="${p.img || 'https://via.placeholder.com/300x300/eee/999?text=Evia'}" onclick="handleProductClick('${p.id}')"></div>
+                <div class="card-content">
+                    <span class="cat-chip">${catIcons[p.cat] || 'ًںŒ؟'} ${p.cat}</span>
+                    <h3 class="product-title" onclick="handleProductClick('${p.id}')">${p.name}</h3>
+                    <div class="info-row"><div class="price-row">${priceHtml}</div><span class="unit-chip">${p.baseAmt}${p.unit}</span></div>
+                    ${isAdmin ? getAdminControls(p) : getAddToCartBtn(p)}
+                </div></div>`;
         });
     }
 
     function getAdminControls(p) {
-        return `<div class="edit-box"><button class="btn-pin ${p.pinned ? 'active' : ''}" onclick="togglePin('${p.id}')">📌 تثبيت</button>
-            <input type="number" step="0.01" class="edit-order-input" value="${p.orderIndex || ''}" onchange="updateProd('${p.id}','orderIndex',this.value)" placeholder="ترتيب #">
-            <button class="btn-del" onclick="delProd('${p.id}', '${p.name}')">🗑️ حذف</button></div>`;
+        return `<div class="edit-box"><button class="btn-pin ${p.pinned ? 'active' : ''}" onclick="togglePin('${p.id}')">ًں“Œ طھط«ط¨ظٹطھ</button>
+            <input type="number" step="0.01" class="edit-order-input" value="${p.orderIndex || ''}" onchange="updateProd('${p.id}','orderIndex',this.value)" placeholder="طھط±طھظٹط¨ #">
+            <button class="btn-del" onclick="delProd('${p.id}', '${p.name}')">ًں—‘ï¸ڈ ط­ط°ظپ</button></div>`;
     }
 
     function getAddToCartBtn(p) {
-        return `<div style="display:flex; border:1px solid var(--green); border-radius:8px; overflow:hidden; margin-bottom:5px;"><input type="number" id="qty-${p.id}" value="${p.baseAmt}" style="width:100%; border:none; text-align:center; font-weight:bold; outline:none; padding:5px;"></div>
-        <button class="add-btn" onclick="addToCart('${p.id}')">إضافة للسلة 🛒</button>`;
+        return `<div class="qty-stepper"><input type="number" id="qty-${p.id}" value="${p.baseAmt}"></div>
+        <button class="add-btn" onclick="addToCart('${p.id}')">ًں›’ ط¥ط¶ط§ظپط© ظ„ظ„ط³ظ„ط©</button>`;
     }
 
     function loginAdmin() {
-        let pass = prompt("كلمة السر:");
+        let pass = prompt("ظƒظ„ظ…ط© ط§ظ„ط³ط±:");
         if (pass === config.adminPass) { isAdmin = !isAdmin; document.getElementById('adminPanel').style.display = isAdmin ? 'block' : 'none'; render(); }
-        else if (pass) alert("خطأ!");
+        else if (pass) alert("ط®ط·ط£!");
     }
 
     function switchAdminTab(tab) {
@@ -522,14 +625,14 @@
     function renderMerchantsList() {
         const list = document.getElementById('merchants-list'); list.innerHTML = "";
         merchants.forEach(m => {
-            list.innerHTML += `<div class="merchant-card" onclick="openMerchantEditorAuth('${m.id}')"><img src="${m.img || 'https://via.placeholder.com/80'}" class="merchant-img"><div>${m.name}</div><small>🔐 ${m.pass}</small></div>`;
+            list.innerHTML += `<div class="merchant-card" onclick="openMerchantEditorAuth('${m.id}')"><img src="${m.img || 'https://via.placeholder.com/80'}" class="merchant-img"><div>${m.name}</div><small>ًں”گ ${m.pass}</small></div>`;
         });
     }
 
     let editingMerchantId = null;
     function openMerchantEditorAuth(mId) {
-        if (prompt("🔒 كود الأمان:") === config.merchantAuthPass) {
-            editingMerchantId = mId; merchantEditorFilter = 'الكل'; const m = merchants.find(x => x.id === mId);
+        if (prompt("ًں”’ ظƒظˆط¯ ط§ظ„ط£ظ…ط§ظ†:") === config.merchantAuthPass) {
+            editingMerchantId = mId; merchantEditorFilter = 'ط§ظ„ظƒظ„'; const m = merchants.find(x => x.id === mId);
             document.getElementById('editor-merchant-name').innerText = m.name;
             document.getElementById('merchants-list').style.display = 'none'; document.getElementById('merchant-editor').style.display = 'block';
             renderMerchantFilterBar(); renderMerchantEditorProducts();
@@ -539,7 +642,7 @@
     function closeMerchantEditor() { editingMerchantId = null; document.getElementById('merchant-editor').style.display = 'none'; document.getElementById('merchants-list').style.display = 'grid'; }
 
     function renderMerchantFilterBar() {
-        document.getElementById('merchant-filter-bar').innerHTML = ['الكل', ...catOrder].map(cat =>
+        document.getElementById('merchant-filter-bar').innerHTML = ['ط§ظ„ظƒظ„', ...catOrder].map(cat =>
             `<button class="mini-tab-btn ${cat === merchantEditorFilter ? 'active' : ''}" onclick="setMerchantFilter('${cat}')">${cat}</button>`
         ).join('');
     }
@@ -549,11 +652,11 @@
     function renderMerchantEditorProducts() {
         if(!editingMerchantId) return; const m = merchants.find(x => x.id === editingMerchantId);
         const grid = document.getElementById('merchant-products-grid'); grid.innerHTML = "";
-        products.filter(p => merchantEditorFilter === 'الكل' || p.cat === merchantEditorFilter).forEach(p => {
+        products.filter(p => merchantEditorFilter === 'ط§ظ„ظƒظ„' || p.cat === merchantEditorFilter).forEach(p => {
             const isAssigned = m.assignedProducts && m.assignedProducts[p.id], cp = (m.customPrices && m.customPrices[p.id]) || '';
             grid.innerHTML += `<div class="simple-prod-card"><img src="${p.img || 'https://via.placeholder.com/100'}" class="simple-prod-img"><div style="font-size:0.8rem; font-weight:bold;">${p.name}</div>
-                <input type="number" placeholder="سعر خاص" value="${cp}" onchange="saveMerchantPrice('${m.id}', '${p.id}', this.value)" style="width:80%; padding:5px; border:1px solid #ddd; text-align:center;">
-                <button class="btn-assign ${isAssigned ? 'assigned' : ''}" onclick="toggleMerchantAssign('${m.id}', '${p.id}', ${!!isAssigned})">${isAssigned ? 'إلغاء ✕' : 'تعيين ✓'}</button></div>`;
+                <input type="number" placeholder="ط³ط¹ط± ط®ط§طµ" value="${cp}" onchange="saveMerchantPrice('${m.id}', '${p.id}', this.value)" style="width:80%; padding:5px; border:1px solid #ddd; text-align:center;">
+                <button class="btn-assign ${isAssigned ? 'assigned' : ''}" onclick="toggleMerchantAssign('${m.id}', '${p.id}', ${!!isAssigned})">${isAssigned ? 'ط¥ظ„ط؛ط§ط، âœ•' : 'طھط¹ظٹظٹظ† âœ“'}</button></div>`;
         });
     }
 
@@ -563,12 +666,12 @@
     function saveProduct() {
         if (!requireDb()) return;
         const id = "p_" + Date.now();
-        const data = { id, name: document.getElementById('p-name').value, price: parseFloat(document.getElementById('p-price').value), wholesalePrice: parseFloat(document.getElementById('p-price-w').value) || 0, baseAmt: parseFloat(document.getElementById('p-amt').value), unit: document.getElementById('p-unit').value, cat: document.getElementById('p-cat').value, img: document.getElementById('p-img').value, desc: document.getElementById('p-desc').value, orderIndex: parseFloat(document.getElementById('p-order').value), pinned: false, timestamp: Date.now() };
+        const data = { id, name: document.getElementById('p-name').value, price: parseFloat(document.getElementById('p-price').value), wholesalePrice: parseFloat(document.getElementById('p-price-w').value) || 0, oldPrice: parseFloat(document.getElementById('p-oldprice').value) || 0, baseAmt: parseFloat(document.getElementById('p-amt').value), unit: document.getElementById('p-unit').value, cat: document.getElementById('p-cat').value, img: document.getElementById('p-img').value, desc: document.getElementById('p-desc').value, orderIndex: parseFloat(document.getElementById('p-order').value), pinned: false, timestamp: Date.now() };
         if(data.name) { addLog('create', id, data.name, null); db.ref('products/' + id).set(data).then(() => render()); }
     }
 
     function updateProd(id, f, v) { if (!requireDb()) return; const p = products.find(x => x.id === id); addLog('reorder', id, p.name, p); db.ref('products/'+id).update({[f]: parseFloat(v)}); }
-    function delProd(id, n) { if (!requireDb()) return; if(confirm(`حذف "${n}"؟`)) { addLog('delete', id, n, products.find(x => x.id === id)); db.ref('products/'+id).remove(); } }
+    function delProd(id, n) { if (!requireDb()) return; if(confirm(`ط­ط°ظپ "${n}"طں`)) { addLog('delete', id, n, products.find(x => x.id === id)); db.ref('products/'+id).remove(); } }
     function togglePin(id) { if (!requireDb()) return; const p = products.find(x => x.id === id); addLog('pin', id, p.name, p); db.ref('products/' + id).update({ pinned: !p.pinned }); }
 
     function addToCart(id, fromModal = false) {
@@ -580,7 +683,7 @@
         const ex = cart.find(i => i.id === id && i.baseQty === q);
         if(ex) { ex.orderCount += 1; ex.finalPrice = Math.round((up / p.baseAmt) * (q * ex.orderCount)); }
         else { cart.push({ ...p, selectedQty: q, orderCount: 1, baseQty: q, priceUsed: up, finalPrice: Math.round((up / p.baseAmt) * q) }); }
-        updateCartBadge(); if(fromModal) closeProduct(); alert("تمت الإضافة ✅");
+        updateCartBadge(); if(fromModal) closeProduct(); alert("طھظ…طھ ط§ظ„ط¥ط¶ط§ظپط© âœ…");
     }
 
     function changeCartQty(index, delta) {
@@ -593,7 +696,11 @@
 
     function updateCartUI() {
         const list = document.getElementById('cart-items'); list.innerHTML = ""; let sub = 0;
-        cart.forEach((i, idx) => { sub += i.finalPrice; list.innerHTML += `<div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #eee;"><div style="flex:1"><b>${i.name}</b><br><small>${i.selectedQty}${i.unit}</small></div><div style="display:flex; align-items:center; gap:10px;"><button class="cart-qty-btn" onclick="changeCartQty(${idx}, -1)">-</button><span>${i.orderCount}</span><button class="cart-qty-btn" onclick="changeCartQty(${idx}, 1)">+</button></div></div>`; });
+        if (cart.length === 0) { list.innerHTML = `<div style="text-align:center; padding:20px; color:var(--ink-soft);">ط§ظ„ط³ظ„ط© ظپط§ط±ط؛ط© ًں›چï¸ڈ</div>`; }
+        cart.forEach((i, idx) => { sub += i.finalPrice; list.innerHTML += `<div class="cart-item-row">
+            <img src="${i.img || 'https://via.placeholder.com/60'}" class="cart-item-img">
+            <div class="cart-item-info"><b>${i.name}</b><small style="color:var(--ink-soft);">${i.selectedQty}${i.unit} â€” ${i.finalPrice} ط¯ط¬</small></div>
+            <div style="display:flex; align-items:center; gap:8px;"><button class="cart-qty-btn" onclick="changeCartQty(${idx}, -1)">-</button><span style="font-weight:700;">${i.orderCount}</span><button class="cart-qty-btn" onclick="changeCartQty(${idx}, 1)">+</button></div></div>`; });
         const t = document.getElementById('ship-type').value; document.getElementById('address-section').style.display = (t === "500") ? "none" : "block";
         document.getElementById('final-total').innerText = sub + parseInt(t);
     }
@@ -601,10 +708,10 @@
     function checkout() {
         const n = document.getElementById('cust-name').value, p = document.getElementById('cust-phone').value; if(!n || !p || cart.length === 0) return;
         const s = document.getElementById('ship-type'), w = document.getElementById('cust-wilaya').value, ad = document.getElementById('cust-address').value;
-        let msg = `*📦 طلبية Evia Naturelle*\n👤 الاسم: ${n}\n📞 الهاتف: ${p}\n🚚 التوصيل: ${s.options[s.selectedIndex].text}\n📍 الولاية: ${w}\n`;
-        if(s.value !== "500") msg += `🏠 العنوان: ${ad}\n`;
-        msg += `----------\n`; cart.forEach(i => msg += `- ${i.name} (${i.selectedQty}${i.unit}): ${i.finalPrice}دج\n`);
-        msg += `----------\n*💰 الإجمالي: ${document.getElementById('final-total').innerText} دج*`;
+        let msg = `*ًں“¦ ط·ظ„ط¨ظٹط© Evia Naturelle*\nًں‘¤ ط§ظ„ط§ط³ظ…: ${n}\nًں“‍ ط§ظ„ظ‡ط§طھظپ: ${p}\nًںڑڑ ط§ظ„طھظˆطµظٹظ„: ${s.options[s.selectedIndex].text}\nًں“چ ط§ظ„ظˆظ„ط§ظٹط©: ${w}\n`;
+        if(s.value !== "500") msg += `ًںڈ  ط§ظ„ط¹ظ†ظˆط§ظ†: ${ad}\n`;
+        msg += `----------\n`; cart.forEach(i => msg += `- ${i.name} (${i.selectedQty}${i.unit}): ${i.finalPrice}ط¯ط¬\n`);
+        msg += `----------\n*ًں’° ط§ظ„ط¥ط¬ظ…ط§ظ„ظٹ: ${document.getElementById('final-total').innerText} ط¯ط¬*`;
         window.open(`https://wa.me/${config.whatsapp}?text=${encodeURIComponent(msg)}`);
     }
 
@@ -615,12 +722,21 @@
         const p = products.find(x => x.id === id); let pr = p.price;
         if(currentMode === 'wholesale') pr = p.wholesalePrice || p.price;
         if(currentMode === 'merchant' && currentMerchant) pr = (currentMerchant.customPrices && currentMerchant.customPrices[id]) || p.wholesalePrice || p.price;
+        let priceBlock = `<span style="font-size:1.7rem; color:var(--gold-dark); font-weight:800;">${pr} ط¯ط¬</span>`;
+        if (p.oldPrice && p.oldPrice > pr && currentMode === 'retail') {
+            const off = Math.round((1 - pr / p.oldPrice) * 100);
+            priceBlock += ` <span class="old-price" style="font-size:1rem;">${p.oldPrice} ط¯ط¬</span> <span style="background:var(--danger); color:#fff; font-size:.75rem; font-weight:800; padding:3px 8px; border-radius:8px;">-${off}%</span>`;
+        }
         document.getElementById('product-detail-content').innerHTML = `
-            <span onclick="closeProduct()" style="position:absolute; left:20px; top:10px; font-size:35px; cursor:pointer; color:#888;">&times;</span>
-            <div style="text-align:center;"><img src="${p.img || 'https://via.placeholder.com/300x300/eee/999?text=Evia'}" style="width:100%; border-radius:20px; max-height:300px; object-fit:contain;">
-                <h2 class="brand-font">${p.name}</h2><div style="font-size:1.6rem; color:var(--gold); font-weight:bold;">${pr} دج</div><div style="margin:15px 0;">${p.desc || 'منتج طبيعي عالي الجودة.'}</div>
-                <input type="number" id="qty-modal-${p.id}" value="${p.baseAmt}" style="width:90px; padding:12px; border:2px solid var(--green); border-radius:12px; text-align:center;">
-                <button onclick="addToCart('${p.id}', true)" style="width:100%; background:var(--green); color:white; padding:18px; border:none; border-radius:15px; margin-top:20px; font-weight:bold;">إضافة للسلة 🛒</button></div>`;
+            <span onclick="closeProduct()" style="position:absolute; left:20px; top:10px; font-size:32px; cursor:pointer; color:#aaa; line-height:1;">&times;</span>
+            <div style="text-align:center;">
+                <div style="border-radius:20px; overflow:hidden; background:#f5f1e6; margin-bottom:14px;"><img src="${p.img || 'https://via.placeholder.com/300x300/eee/999?text=Evia'}" style="width:100%; max-height:280px; object-fit:contain; display:block;"></div>
+                <span class="cat-chip">${catIcons[p.cat] || 'ًںŒ؟'} ${p.cat}</span>
+                <h2 class="brand-font" style="margin:8px 0;">${p.name}</h2>
+                <div style="margin-bottom:12px;">${priceBlock}</div>
+                <div style="text-align:right; color:var(--ink-soft); font-size:0.92rem; line-height:1.7; background:#fbfaf7; padding:12px 14px; border-radius:12px; margin-bottom:16px;">${p.desc || 'ظ…ظ†طھط¬ ط·ط¨ظٹط¹ظٹ ط¹ط§ظ„ظٹ ط§ظ„ط¬ظˆط¯ط©.'}</div>
+                <div class="qty-stepper" style="max-width:140px; margin:0 auto;"><input type="number" id="qty-modal-${p.id}" value="${p.baseAmt}"></div>
+                <button onclick="addToCart('${p.id}', true)" class="add-btn" style="margin-top:16px; padding:15px; font-size:0.95rem;">ًں›’ ط¥ط¶ط§ظپط© ظ„ظ„ط³ظ„ط©</button></div>`;
         document.getElementById('productModal').style.display = 'block';
     }
     function closeProduct() { document.getElementById('productModal').style.display = 'none'; }
